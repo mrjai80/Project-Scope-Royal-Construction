@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-900 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSim: Project Scope Statement Architecture (Royal Construction)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top right, #1e293b, #0f172a, #020617);
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .amber-glow {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+            .glass-panel, .glass-card { background: white !important; border: 1px solid #ccc !important; color: black !important; box-shadow: none !important; }
+            .text-white, .text-slate-100, .text-slate-200, .text-slate-300 { color: #111 !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-100 selection:bg-amber-500 selection:text-slate-900">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-slate-700/50 px-4 py-3 no-print">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-xl">
+                    <i class="fa-solid fa-hard-hat"></i>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold tracking-wide uppercase text-amber-400">EduSim Architect</h1>
+                    <p class="text-xs text-slate-400 font-medium hidden sm:block">Royal Construction • Project Scope Statement</p>
+                </div>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="hidden lg:flex items-center space-x-1 text-xs font-semibold" id="phase-stepper">
+                <!-- Dynamic Phase Badges inserted via JS -->
+            </div>
+
+            <!-- Theory Notes Popup Trigger -->
+            <button onclick="toggleNotesModal(true)" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-600 text-amber-300 text-xs font-semibold flex items-center space-x-2 transition">
+                <i class="fa-solid fa-book-open"></i>
+                <span>Reference Notes</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Dynamic Container -->
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center my-4">
+        
+        <!-- ==================== PHASE 1: SITUATION (HOOK) ==================== -->
+        <section id="phase-1" class="phase-container space-y-6">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="w-full md:w-2/3 space-y-4">
+                        <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+                            Phase 1: Project Mission & Situation
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold gold-gradient-text leading-tight">
+                            Special Assignment: Mr. Ahmad's Residential House Project
+                        </h2>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Congratulations! You have been appointed as the **Project Manager** at **Royal Construction Sdn. Bhd.**, a trusted construction firm with over 20 years of industry excellence. The company has recently signed a contract with a key client, **Mr. Ahmad**, to construct a high-quality custom residential house in **Iskandar Puteri**.
+                        </p>
+                        
+                        <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-2 text-xs sm:text-sm">
+                            <div class="flex items-center text-amber-300 font-semibold mb-1">
+                                <i class="fa-solid fa-triangle-exclamation mr-2"></i> Project Constraints (Triple Constraints):
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-slate-300">
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block text-xs">Time Schedule:</span>
+                                    <strong class="text-slate-100"><i class="fa-regular fa-clock text-amber-400 mr-1"></i> Max 5 Months</strong>
+                                </div>
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block text-xs">Target Budget:</span>
+                                    <strong class="text-slate-100"><i class="fa-solid fa-money-bill-wave text-emerald-400 mr-1"></i> RM 500,000</strong>
+                                </div>
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                                    <span class="text-slate-400 block text-xs">Location & Quality:</span>
+                                    <strong class="text-slate-100"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i> Iskandar Puteri (High)</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-slate-400 text-xs italic">
+                            Your critical mission: Prepare an official <strong>Project Scope Statement</strong> covering the 6 core elements to protect the company from <em>Scope Creep</em>, cost overruns, and client disputes.
+                        </p>
+                    </div>
+
+                    <!-- CSS Graphic -->
+                    <div class="w-full md:w-1/3 flex flex-col items-center justify-center p-4 bg-slate-950/40 rounded-xl border border-slate-800">
+                        <div class="w-32 h-32 relative flex items-center justify-center text-amber-400 text-6xl my-2">
+                            <i class="fa-solid fa-house-chimney-crack animate-pulse"></i>
+                            <div class="absolute inset-0 border-2 border-dashed border-amber-500/30 rounded-full animate-spin" style="animation-duration: 12s;"></div>
+                        </div>
+                        <span class="text-xs text-amber-300 font-mono tracking-widest uppercase mt-2">Iskandar Puteri Site</span>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div class="mt-8 pt-6 border-t border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Project Manager Name (Student): *</label>
+                        <input type="text" id="input-student-name" placeholder="Enter your full name" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Student ID / Matric No.: *</label>
+                        <input type="text" id="input-student-id" placeholder="e.g. PM-2026-889" class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl px-4 py-3 text-slate-100 text-sm focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 2: PREPARATION (THEORY & QUIZ) ==================== -->
+        <section id="phase-2" class="phase-container space-y-6 hidden">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-2xl space-y-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+                        Phase 2: Preparation & Qualification Quiz
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mt-2">
+                        Principles of 6 Project Scope Elements
+                    </h2>
+                    <p class="text-slate-300 text-sm mt-1">
+                        Review the 6 core elements below. You must pass the 3-question qualification quiz (3/3 score required) to unlock the Simulation Phase.
+                    </p>
+                </div>
+
+                <!-- 6 Scope Elements Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-400 text-sm"><i class="fa-solid fa-bullseye mr-1.5"></i>1. Project Objective</h4>
+                        <p class="text-slate-300 text-xs mt-1">The primary project goal bounded by measurable time, budget, and quality constraints.</p>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-400 text-sm"><i class="fa-solid fa-box-open mr-1.5"></i>2. Deliverables</h4>
+                        <p class="text-slate-300 text-xs mt-1">Tangible physical end-products or official documents to be handed over to the client.</p>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-emerald-500">
+                        <h4 class="font-bold text-emerald-400 text-sm"><i class="fa-solid fa-flag mr-1.5"></i>3. Milestones</h4>
+                        <p class="text-slate-300 text-xs mt-1">Key dates or critical milestone stages throughout the 5-month construction lifecycle.</p>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-400 text-sm"><i class="fa-solid fa-microchip mr-1.5"></i>4. Technical Requirements</h4>
+                        <p class="text-slate-300 text-xs mt-1">Technical specifications, material grades, safety standards, & MBIP regulatory compliance.</p>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-rose-500">
+                        <h4 class="font-bold text-rose-400 text-sm"><i class="fa-solid fa-ban mr-1.5"></i>5. Limits & Exclusions</h4>
+                        <p class="text-slate-300 text-xs mt-1">Project boundaries—items **NOT** included in the RM500,000 budget to prevent *scope creep*.</p>
+                    </div>
+                    <div class="glass-card p-3.5 rounded-xl border-l-4 border-cyan-500">
+                        <h4 class="font-bold text-cyan-400 text-sm"><i class="fa-solid fa-comments mr-1.5"></i>6. Customer Reviews</h4>
+                        <p class="text-slate-300 text-xs mt-1">Formal review sessions with Mr. Ahmad to verify quality and sign off milestone completions.</p>
+                    </div>
+                </div>
+
+                <!-- Gatekeeper Quiz Box -->
+                <div class="bg-slate-950/80 p-5 rounded-xl border border-slate-800 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h3 class="font-bold text-amber-400 text-base flex items-center">
+                            <i class="fa-solid fa-shield-halved mr-2"></i> Qualification Safety Quiz (Must Score 3/3)
+                        </h3>
+                        <span id="quiz-score-badge" class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-xs font-mono">Score: 0 / 3</span>
+                    </div>
+
+                    <div id="quiz-questions-list" class="space-y-4 text-xs sm:text-sm">
+                        <!-- Questions generated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 3: SIMULATION (GUIDED MASTERY) ==================== -->
+        <section id="phase-3" class="phase-container space-y-6 hidden">
+            <!-- Dynamic Floating Instruction Banner -->
+            <div class="glass-panel p-4 rounded-xl border border-amber-500/40 bg-amber-500/10 flex items-start space-x-3 text-xs sm:text-sm">
+                <div class="p-2 rounded-lg bg-amber-500 text-slate-950 font-bold">
+                    <i class="fa-solid fa-compass animate-spin" style="animation-duration: 8s;"></i>
+                </div>
+                <div class="flex-grow">
+                    <div class="font-bold text-amber-400 uppercase tracking-wider text-xs">Project Manager Floating Guide</div>
+                    <p id="floating-instruction-text" class="text-slate-200 mt-0.5">
+                        Select a project clause from the left deck, then click the correct Project Scope Category on the right matrix. Ensure risky or trap clauses are handled properly!
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Clause Deck / Selection Pool -->
+                <div class="lg:col-span-5 glass-panel p-5 rounded-2xl border border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="font-bold text-slate-200 text-sm flex items-center">
+                                <i class="fa-solid fa-list-check text-amber-400 mr-2"></i> Project Clauses Deck
+                            </h3>
+                            <span id="clauses-left-count" class="text-xs bg-slate-800 text-amber-400 px-2 py-1 rounded font-mono">8 Clauses Left</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-4">Click a clause to select it, then choose the appropriate scope category.</p>
+
+                        <div id="clause-cards-container" class="space-y-2.5 max-h-[420px] overflow-y-auto pr-1">
+                            <!-- Clauses dynamic -->
+                        </div>
+                    </div>
+
+                    <!-- Metrics Live Card -->
+                    <div class="mt-4 pt-3 border-t border-slate-800 grid grid-cols-3 gap-2 text-center text-xs">
+                        <div class="bg-slate-950/60 p-2 rounded-lg">
+                            <span class="text-slate-400 block text-[10px]">Steps Taken:</span>
+                            <span id="metric-steps" class="font-bold text-amber-400 font-mono text-sm">0</span>
+                        </div>
+                        <div class="bg-slate-950/60 p-2 rounded-lg">
+                            <span class="text-slate-400 block text-[10px]">Coach Tips / Errors:</span>
+                            <span id="metric-errors" class="font-bold text-rose-400 font-mono text-sm">0</span>
+                        </div>
+                        <div class="bg-slate-950/60 p-2 rounded-lg">
+                            <span class="text-slate-400 block text-[10px]">Aligned Clauses:</span>
+                            <span id="metric-accuracy" class="font-bold text-emerald-400 font-mono text-sm">0/6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Target Categories Matrix -->
+                <div class="lg:col-span-7 glass-panel p-5 rounded-2xl border border-slate-700 space-y-3">
+                    <h3 class="font-bold text-slate-200 text-sm flex items-center justify-between">
+                        <span><i class="fa-solid fa-sitemap text-amber-400 mr-2"></i> Project Scope Statement Alignment Matrix</span>
+                        <span class="text-xs text-slate-400 font-normal">Click category to assign selected clause</span>
+                    </h3>
+
+                    <div id="categories-matrix" class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <!-- Category Slot 1 -->
+                        <div onclick="assignSelectedClauseToCategory('objective')" class="category-slot glass-card p-3 rounded-xl border border-slate-700 hover:border-amber-500/60 cursor-pointer transition relative group">
+                            <div class="flex items-center justify-between text-amber-400 font-bold mb-1">
+                                <span><i class="fa-solid fa-bullseye mr-1"></i> 1. Project Objective</span>
+                                <i class="fa-solid fa-plus text-slate-500 group-hover:text-amber-400"></i>
+                            </div>
+                            <div id="slot-objective" class="min-h-[48px] bg-slate-950/50 rounded-lg p-2 text-slate-300 italic text-[11px] border border-dashed border-slate-800">
+                                [ Empty - Unassigned ]
+                            </div>
+                        </div>
+
+                        <!-- Category Slot 2 -->
+                        <div onclick="assignSelectedClauseToCategory('deliverables')" class="category-slot glass-card p-3 rounded-xl border border-slate-700 hover:border-blue-500/60 cursor-pointer transition relative group">
+                            <div class="flex items-center justify-between text-blue-400 font-bold mb-1">
+                                <span><i class="fa-solid fa-box-open mr-1"></i> 2. Deliverables</span>
+                                <i class="fa-solid fa-plus text-slate-500 group-hover:text-blue-400"></i>
+                            </div>
+                            <div id="slot-deliverables" class="min-h-[48px] bg-slate-950/50 rounded-lg p-2 text-slate-300 italic text-[11px] border border-dashed border-slate-800">
+                                [ Empty - Unassigned ]
+                            </div>
+                        </div>
+
+                        <!-- Category Slot 3 -->
+                        <div onclick="assignSelectedClauseToCategory('milestones')" class="category-slot glass-card p-3 rounded-xl border border-slate-700 hover:border-emerald-500/60 cursor-pointer transition relative group">
+                            <div class="flex items-center justify-between text-emerald-400 font-bold mb-1">
+                                <span><i class="fa-solid fa-flag mr-1"></i> 3. Milestones</span>
+                                <i class="fa-solid fa-plus text-slate-500 group-hover:text-emerald-400"></i>
+                            </div>
+                            <div id="slot-milestones" class="min-h-[48px] bg-slate-950/50 rounded-lg p-2 text-slate-300 italic text-[11px] border border-dashed border-slate-800">
+                                [ Empty - Unassigned ]
+                            </div>
+                        </div>
+
+                        <!-- Category Slot 4 -->
+                        <div onclick="assignSelectedClauseToCategory('technical')" class="category-slot glass-card p-3 rounded-xl border border-slate-700 hover:border-purple-500/60 cursor-pointer transition relative group">
+                            <div class="flex items-center justify-between text-purple-400 font-bold mb-1">
+                                <span><i class="fa-solid fa-microchip mr-1"></i> 4. Technical Requirements</span>
+                                <i class="fa-solid fa-plus text-slate-500 group-hover:text-purple-400"></i>
+                            </div>
+                            <div id="slot-technical" class="min-h-[48px] bg-slate-950/50 rounded-lg p-2 text-slate-300 italic text-[11px] border border-dashed border-slate-800">
+                                [ Empty - Unassigned ]
+                            </div>
+                        </div>
+
+                        <!-- Category Slot 5 -->
+                        <div onclick="assignSelectedClauseToCategory('exclusions')" class="category-slot glass-card p-3 rounded-xl border border-slate-700 hover:border-rose-500/60 cursor-pointer transition relative group">
+                            <div class="flex items-center justify-between text-rose-400 font-bold mb-1">
+                                <span><i class="fa-solid fa-ban mr-1"></i> 5. Limits & Exclusions</span>
+                                <i class="fa-solid fa-plus text-slate-500 group-hover:text-rose-400"></i>
+                            </div>
+                            <div id="slot-exclusions" class="min-h-[48px] bg-slate-950/50 rounded-lg p-2 text-slate-300 italic text-[11px] border border-dashed border-slate-800">
+                                [ Empty - Unassigned ]
+                            </div>
+                        </div>
+
+                        <!-- Category Slot 6 -->
+                        <div onclick="assignSelectedClauseToCategory('reviews')" class="category-slot glass-card p-3 rounded-xl border border-slate-700 hover:border-cyan-500/60 cursor-pointer transition relative group">
+                            <div class="flex items-center justify-between text-cyan-400 font-bold mb-1">
+                                <span><i class="fa-solid fa-comments mr-1"></i> 6. Customer Reviews</span>
+                                <i class="fa-solid fa-plus text-slate-500 group-hover:text-cyan-400"></i>
+                            </div>
+                            <div id="slot-reviews" class="min-h-[48px] bg-slate-950/50 rounded-lg p-2 text-slate-300 italic text-[11px] border border-dashed border-slate-800">
+                                [ Empty - Unassigned ]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 4: REASONING (JUSTIFICATION) ==================== -->
+        <section id="phase-4" class="phase-container space-y-6 hidden">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-2xl space-y-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+                        Phase 4: Performance & Justification Questions
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mt-2">
+                        Performance Analysis & Professional Justification
+                    </h2>
+                    <p class="text-slate-300 text-sm mt-1">
+                        Please answer the following mandatory questions to explain your professional rationale when structuring Mr. Ahmad's project scope.
+                    </p>
+                </div>
+
+                <!-- Performance Summary Strip -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-center">
+                    <div>
+                        <span class="text-slate-400 text-xs block">Time Elapsed:</span>
+                        <span id="p4-time-taken" class="text-amber-400 font-bold font-mono text-base">00:00</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 text-xs block">Accuracy Rating:</span>
+                        <span id="p4-accuracy-score" class="text-emerald-400 font-bold font-mono text-base">100%</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 text-xs block">Coach Tips Triggered:</span>
+                        <span id="p4-total-errors" class="text-rose-400 font-bold font-mono text-base">0</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 text-xs block">Scope Audit Status:</span>
+                        <span class="text-blue-400 font-bold text-xs">Passed Audit</span>
+                    </div>
+                </div>
+
+                <!-- Mandatory Justification Questions -->
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            Question 1: Why did you categorize loose interior furniture and outdoor landscaping under 'Limits & Exclusions'? *
+                        </label>
+                        <textarea id="input-justification-1" rows="3" placeholder="Explain the impact on the RM 500,000 budget and 5-month deadline if these items were not excluded..." class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl p-3 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            Question 2: How does the designed 'Customer Reviews' schedule protect Royal Construction Sdn. Bhd. from 'Scope Creep'? *
+                        </label>
+                        <textarea id="input-justification-2" rows="3" placeholder="Explain how formal sign-off meetings with Mr. Ahmad manage specification changes..." class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl p-3 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            Question 3: What is the importance of specifying local authority (MBIP) compliance in the 'Technical Requirements'? *
+                        </label>
+                        <textarea id="input-justification-3" rows="3" placeholder="Discuss the legal risks and potential project delays if MBIP approval processes are neglected..." class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl p-3 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 5: REFLECTION ==================== -->
+        <section id="phase-5" class="phase-container space-y-6 hidden">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-2xl space-y-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+                        Phase 5: Critical Reflection & Leadership
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mt-2">
+                        Higher-Order Thinking & Simulation Takeaways
+                    </h2>
+                    <p class="text-slate-300 text-sm mt-1">
+                        Reflect on real-world construction scenarios where client demands evolve midway through the project.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            Reflection 1: If at Month 3 Mr. Ahmad requests adding a small swimming pool to the yard, what is the official procedure for the Project Manager? *
+                        </label>
+                        <textarea id="input-reflection-1" rows="3" placeholder="Discuss formal Change Order procedures, cost/time variance assessments, and contract adjustments..." class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl p-3 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            Reflection 2: What is the most critical skill for a Project Manager when communicating with a high-expectation client? *
+                        </label>
+                        <textarea id="input-reflection-2" rows="3" placeholder="Share insights regarding ethical communication, expectation management, and professional firmness..." class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 rounded-xl p-3 text-slate-100 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 6: DEBRIEFING ==================== -->
+        <section id="phase-6" class="phase-container space-y-6 hidden">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-2xl space-y-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+                        Phase 6: Debriefing & PMBOK Framework
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mt-2">
+                        Bridging Simulation to Real-World Project Management
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                    <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <h4 class="font-bold text-amber-400 flex items-center text-base">
+                            <i class="fa-solid fa-shapes mr-2"></i> Project Triple Constraints
+                        </h4>
+                        <p class="text-slate-300 leading-relaxed">
+                            In standard project management theory (PMBOK), <strong>Scope</strong>, <strong>Time</strong>, and <strong>Cost</strong> form the core constraints triangle. Any unapproved shift in Mr. Ahmad's scope directly impacts the RM 500,000 budget and the 5-month deadline.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <h4 class="font-bold text-blue-400 flex items-center text-base">
+                            <i class="fa-solid fa-shield-cat mr-2"></i> Preventing Scope Creep
+                        </h4>
+                        <p class="text-slate-300 leading-relaxed">
+                            <em>Scope Creep</em> occurs when features or work items are added informally without adjusting cost or timeline. Documenting explicit <strong>Limits & Exclusions</strong> serves as the contractor's primary legal and operational shield.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-500/10 p-4 rounded-xl border border-amber-500/30 text-xs text-amber-200">
+                    <i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i>
+                    <strong>Core Takeaway:</strong> The signed <em>Project Scope Statement</em> between Royal Construction Sdn. Bhd. and Mr. Ahmad establishes the official <strong>Scope Baseline</strong> for all future evaluations and review gates.
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 7: PORTFOLIO REPORT & ACTION ==================== -->
+        <section id="phase-7" class="phase-container space-y-6 hidden">
+            <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slate-700 shadow-2xl space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-700/80 pb-4">
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-bold uppercase tracking-wider">
+                            Phase 7: Student Performance Portfolio Report
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mt-1">
+                            Comprehensive Learning & Assessment Portfolio
+                        </h2>
+                    </div>
+
+                    <!-- Print Button MANDATORY -->
+                    <button onclick="window.print()" class="no-print px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 transition shadow-lg">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Print / Download PDF Report</span>
+                    </button>
+                </div>
+
+                <!-- Printable Report Sheet -->
+                <div id="student-portfolio-sheet" class="bg-slate-950 p-6 rounded-2xl border border-slate-800 space-y-6 text-xs sm:text-sm">
+                    <!-- Student Info Header -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-4 border-b border-slate-800">
+                        <div>
+                            <span class="text-slate-400 block text-xs">Student Name:</span>
+                            <strong id="report-student-name" class="text-amber-400 font-bold text-sm">-</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block text-xs">ID / Matric No.:</span>
+                            <strong id="report-student-id" class="text-slate-200 font-mono text-sm">-</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block text-xs">Simulation Date:</span>
+                            <strong id="report-date" class="text-slate-200 font-mono text-xs">-</strong>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block text-xs">Accuracy Score:</span>
+                            <strong id="report-accuracy" class="text-emerald-400 font-bold text-sm">100%</strong>
+                        </div>
+                    </div>
+
+                    <!-- Section: Scope Summary Breakdown -->
+                    <div>
+                        <h4 class="font-bold text-amber-400 text-xs uppercase tracking-wider mb-2">1. Approved Project Scope Summary (Mr. Ahmad)</h4>
+                        <div id="report-scope-breakdown" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Section: Justifications -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-amber-400 text-xs uppercase tracking-wider">2. Student Rationale & Justification Answers (Phase 4)</h4>
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+                            <span class="text-slate-400 block font-semibold text-[11px]">Q1: Rationale for Limits & Exclusions:</span>
+                            <p id="report-j1" class="text-slate-200 mt-1 italic">-</p>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+                            <span class="text-slate-400 block font-semibold text-[11px]">Q2: Managing Scope Creep via Customer Reviews:</span>
+                            <p id="report-j2" class="text-slate-200 mt-1 italic">-</p>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+                            <span class="text-slate-400 block font-semibold text-[11px]">Q3: Importance of MBIP Technical Requirements:</span>
+                            <p id="report-j3" class="text-slate-200 mt-1 italic">-</p>
+                        </div>
+                    </div>
+
+                    <!-- Section: Reflections -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-amber-400 text-xs uppercase tracking-wider">3. Critical Risk Management Reflections (Phase 5)</h4>
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+                            <span class="text-slate-400 block font-semibold text-[11px]">R1: Action Plan for Scope Change Requests:</span>
+                            <p id="report-r1" class="text-slate-200 mt-1 italic">-</p>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-lg border border-slate-800">
+                            <span class="text-slate-400 block font-semibold text-[11px]">R2: Client Communication & Leadership Skills:</span>
+                            <p id="report-r2" class="text-slate-200 mt-1 italic">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call To Action (Pledge / Challenge Choice) -->
+                <div class="no-print bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3">
+                    <h4 class="font-bold text-slate-200 text-sm">Select Your Professional Commitment:</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <label class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 cursor-pointer">
+                            <input type="radio" name="cta-choice" value="pledge" checked class="mt-0.5 text-amber-500 focus:ring-amber-500">
+                            <div>
+                                <strong class="text-amber-400 block">Project Manager Ethics Pledge</strong>
+                                <span class="text-slate-400">"I pledge to systematically document project scope boundaries to protect both client rights and company integrity."</span>
+                            </div>
+                        </label>
+                        <label class="flex items-start space-x-3 p-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 cursor-pointer">
+                            <input type="radio" name="cta-choice" value="challenge" class="mt-0.5 text-amber-500 focus:ring-amber-500">
+                            <div>
+                                <strong class="text-amber-400 block">Professional Challenge Commitment</strong>
+                                <span class="text-slate-400">"I commit to applying this 6-Element Scope Framework in my upcoming real-world industry projects."</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PHASE 8: CERTIFICATION ==================== -->
+        <section id="phase-8" class="phase-container space-y-6 hidden">
+            <div class="glass-panel p-6 sm:p-10 rounded-2xl border border-amber-500/40 shadow-2xl text-center space-y-6 relative overflow-hidden">
+                <!-- Watermark background icon -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                    <i class="fa-solid fa-award text-[280px] text-amber-400"></i>
+                </div>
+
+                <div class="no-print flex justify-end">
+                    <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center space-x-2 transition">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Print Certificate</span>
+                    </button>
+                </div>
+
+                <!-- Certificate Frame -->
+                <div class="border-4 border-double border-amber-500/60 p-6 sm:p-10 rounded-xl bg-slate-950/90 relative">
+                    <div class="flex items-center justify-between border-b border-amber-500/30 pb-4 mb-6">
+                        <div class="text-left">
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-amber-400">Royal Construction Sdn. Bhd.</h3>
+                            <span class="text-[10px] text-slate-400">Iskandar Puteri, Johor • Certified Project Academy</span>
+                        </div>
+                        <i class="fa-solid fa-certificate text-3xl text-amber-400"></i>
+                    </div>
+
+                    <span class="text-xs tracking-widest uppercase text-slate-400 block mb-1">SIMULATION ACHIEVEMENT CERTIFICATE</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-100 gold-gradient-text mb-2">
+                        Certificate of Competency in Project Scope Architecture
+                    </h2>
+                    <p class="text-xs text-slate-400">This is to certify that</p>
+
+                    <h1 id="cert-student-name" class="text-2xl sm:text-3xl font-extrabold text-amber-300 my-4 border-b border-dashed border-amber-500/40 pb-2 inline-block px-8">
+                        [ Student Name ]
+                    </h1>
+
+                    <p class="text-xs text-slate-300 max-w-xl mx-auto leading-relaxed">
+                        Has successfully completed the practical simulation for <strong>Project Scope Statement Architecture</strong> for Mr. Ahmad's House Project (RM 500,000 / 5 Months) adhering to the 6-Element Project Management standard.
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8 mt-6 border-t border-slate-800 text-left text-xs">
+                        <div>
+                            <span class="text-slate-400 block text-[10px]">Unique Cert ID:</span>
+                            <span id="cert-id" class="font-mono text-amber-400 font-bold">ROYAL-2026-X99</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block text-[10px]">Issue Date:</span>
+                            <span id="cert-date" class="font-mono text-slate-200">2026-07-28</span>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1 text-right">
+                            <span class="text-slate-400 block text-[10px]">Lead Assessor:</span>
+                            <span class="font-bold text-amber-400">SENTUH+ EduSim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer Controls -->
+    <footer class="sticky bottom-0 z-40 w-full glass-panel border-t border-slate-700/50 px-4 py-3 no-print">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <!-- Back Button -->
+            <button id="btn-prev" onclick="navigatePhase(-1)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs sm:text-sm flex items-center space-x-2 transition disabled:opacity-40 disabled:cursor-not-allowed">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span>Back (&lt;)</span>
+            </button>
+
+            <!-- Current Phase Title Display -->
+            <span id="footer-phase-title" class="text-xs text-slate-400 font-medium hidden sm:block">
+                Phase 1 of 8
+            </span>
+
+            <!-- Next Button -->
+            <button id="btn-next" onclick="navigatePhase(1)" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm flex items-center space-x-2 transition shadow-lg">
+                <span>Next (&gt;)</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL 1: THEORY NOTES POPUP ==================== -->
+    <div id="modal-notes" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden no-print">
+        <div class="glass-panel max-w-2xl w-full p-6 rounded-2xl border border-slate-700 space-y-4 max-h-[85vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+                <h3 class="font-bold text-amber-400 text-base flex items-center">
+                    <i class="fa-solid fa-book-bookmark mr-2"></i> Reference Notes: 6 Scope Statement Elements
+                </h3>
+                <button onclick="toggleNotesModal(false)" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                    <strong class="text-amber-400">1. Project Objective:</strong>
+                    <p class="mt-0.5">Defines clear project goals bounded by time (5 Months) and budget (RM 500,000) for Mr. Ahmad's residential house in Iskandar Puteri.</p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                    <strong class="text-blue-400">2. Deliverables:</strong>
+                    <p class="mt-0.5">Physical end products including completed house structure, Certificate of Completion and Compliance (CCC), and as-built manuals.</p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                    <strong class="text-emerald-400">3. Milestones:</strong>
+                    <p class="mt-0.5">Critical timeline checkpoints: MBIP Approval, Foundation & Substructure, Main Superstructure, Roofing & Finishes, Handover.</p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                    <strong class="text-purple-400">4. Technical Requirements:</strong>
+                    <p class="mt-0.5">Concrete strength grades (C30), SIRIM electrical standards, sanitary plumbing specifications, and MBIP local council codes.</p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                    <strong class="text-rose-400">5. Limits & Exclusions:</strong>
+                    <p class="mt-0.5">Crucial boundaries! Explicitly stating items NOT included in the RM500k budget (e.g. loose furniture, luxury landscaping, pools).</p>
+                </div>
+                <div class="p-3 bg-slate-900 rounded-lg border border-slate-800">
+                    <strong class="text-cyan-400">6. Customer Reviews:</strong>
+                    <p class="mt-0.5">Formal review checkpoints with Mr. Ahmad at the conclusion of each milestone stage to confirm quality and sign off changes.</p>
+                </div>
+            </div>
+
+            <div class="pt-2 text-right">
+                <button onclick="toggleNotesModal(false)" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs">
+                    Close Notes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 2: COACH TIP POPUP ==================== -->
+    <div id="modal-coach-tip" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden no-print">
+        <div class="glass-panel max-w-md w-full p-6 rounded-2xl border border-rose-500/50 space-y-4 text-center">
+            <div class="w-14 h-14 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 flex items-center justify-center text-2xl mx-auto">
+                <i class="fa-solid fa-user-ninja"></i>
+            </div>
+            
+            <h3 class="font-bold text-rose-400 text-lg">Coach Tip: Project Risk Alert!</h3>
+            
+            <p id="coach-tip-message" class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+                This choice risks triggering severe Scope Creep or regulatory work stoppage!
+            </p>
+
+            <button onclick="toggleCoachTipModal(false)" class="px-5 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-400 text-slate-950 font-bold text-xs transition">
+                Understand & Try Again
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT LOGIC & STATE MANAGER ==================== -->
+    <script>
+        // Global State Manager (Preserves form inputs & progress across phase navigation)
+        const appState = {
+            currentPhase: 1,
+            studentName: '',
+            studentId: '',
+            startTime: null,
+            endTime: null,
+            
+            // Phase 2 Quiz State
+            quizAnswers: { q1: null, q2: null, q3: null },
+            quizPassed: false,
+
+            // Phase 3 Simulation State
+            phase3Steps: 0,
+            phase3Errors: 0,
+            selectedClauseId: null,
+            assignedClauses: {}, // clauseId -> categoryKey
+            
+            // Phase 4 Justifications
+            justification1: '',
+            justification2: '',
+            justification3: '',
+
+            // Phase 5 Reflections
+            reflection1: '',
+            reflection2: '',
+
+            // Phase 7 Action
+            ctaChoice: 'pledge'
+        };
+
+        // Master Clause Pool for Phase 3
+        const clauseDeck = [
+            {
+                id: 'c1',
+                text: 'Construct a custom-designed residential house in Iskandar Puteri valued at RM 500,000 within a 5-month duration.',
+                correctCategory: 'objective',
+                explanation: 'This is the Project Objective as it defines the target goal, budget, location, and deadline.'
+            },
+            {
+                id: 'c2',
+                text: 'Handover of completed physical house structure, Certificate of Completion and Compliance (CCC), and Maintenance Manuals.',
+                correctCategory: 'deliverables',
+                explanation: 'This is Deliverables—tangible physical structures and official documentation delivered to the client.'
+            },
+            {
+                id: 'c3',
+                text: 'Milestone Schedule: Month 1 (MBIP Approval & Site Prep), Month 3 (Superstructure & Roof), Month 5 (Finishing & Handover).',
+                correctCategory: 'milestones',
+                explanation: 'This is Milestones—key timeline milestone checkpoints across the construction duration.'
+            },
+            {
+                id: 'c4',
+                text: 'Utilization of C30 grade concrete, SIRIM-standard electrical wiring system, and compliance with MBIP structural plans.',
+                correctCategory: 'technical',
+                explanation: 'This is Technical Requirements—defining quality specifications and statutory compliance codes.'
+            },
+            {
+                id: 'c5',
+                text: 'EXCLUDES installation of loose interior furniture, kitchen electrical appliances, and swimming pool landscaping.',
+                correctCategory: 'exclusions',
+                explanation: 'This is Limits & Exclusions—setting explicit boundaries to prevent budget overruns beyond RM 500k.'
+            },
+            {
+                id: 'c6',
+                text: 'Formal review meetings and sign-off verification with Mr. Ahmad at the conclusion of each milestone stage.',
+                correctCategory: 'reviews',
+                explanation: 'This is Reviews with Customer—establishing formal checkpoints to sign off work and manage changes.'
+            },
+            // Trap Clauses (Triggers Coach Tips)
+            {
+                id: 'c7_trap',
+                text: 'FREE: Installation of a luxury swimming pool and designer interior furnishings at no additional charge.',
+                correctCategory: 'TRAP_OVERRUN',
+                explanation: 'COACH TIP: Budget Overrun Alert! Adding a pool and luxury furnishings free of charge breaches the RM 500,000 budget! This must be listed under Exclusions.'
+            },
+            {
+                id: 'c8_trap',
+                text: 'Commence site construction work without obtaining approved layout permits from the Iskandar Puteri City Council (MBIP).',
+                correctCategory: 'TRAP_ILLEGAL',
+                explanation: 'COACH TIP: Regulatory Stop Order! Starting work without MBIP approvals is illegal and will halt construction. MBIP approval is mandatory under Technical Requirements!'
+            }
+        ];
+
+        // Quiz Questions Data
+        const quizQuestions = [
+            {
+                id: 'q1',
+                question: '1. What is the primary function of defining "Limits and Exclusions" in Mr. Ahmad\'s project?',
+                options: [
+                    'To increase the house price beyond RM 500,000',
+                    'To prevent Scope Creep and establish clear project boundaries',
+                    'To delay the construction duration beyond 5 months'
+                ],
+                correct: 1
+            },
+            {
+                id: 'q2',
+                question: '2. When should "Customer Reviews" with Mr. Ahmad take place?',
+                options: [
+                    'Only once after the house is fully completed at Month 5',
+                    'At every critical milestone phase before proceeding to the next stage',
+                    'Daily without requiring any official documentation'
+                ],
+                correct: 1
+            },
+            {
+                id: 'q3',
+                question: '3. What happens if "Technical Requirements" (such as MBIP permits) are neglected?',
+                options: [
+                    'The project risks work stoppage by local authorities and quality compromise',
+                    'Construction costs become significantly cheaper',
+                    'The house gets completed faster within 2 months'
+                ],
+                correct: 0
+            }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            appState.startTime = new Date();
+            renderPhaseStepper();
+            renderQuizQuestions();
+            renderPhase3Clauses();
+            updateNavigationState();
+        });
+
+        // Phase Stepper Bar Builder
+        function renderPhaseStepper() {
+            const container = document.getElementById('phase-stepper');
+            container.innerHTML = '';
+            for (let i = 1; i <= 8; i++) {
+                const isActive = appState.currentPhase === i;
+                const isPassed = appState.currentPhase > i;
+                
+                const badge = document.createElement('div');
+                badge.className = `px-2 py-1 rounded-md text-[10px] font-bold transition flex items-center space-x-1 ${
+                    isActive 
+                        ? 'bg-amber-500 text-slate-950 shadow' 
+                        : isPassed 
+                            ? 'bg-slate-800 text-emerald-400 border border-emerald-500/30' 
+                            : 'bg-slate-900 text-slate-500 border border-slate-800'
+                }`;
+                badge.innerHTML = `<span>P${i}</span>`;
+                container.appendChild(badge);
+            }
+        }
+
+        // Toggle Modals
+        function toggleNotesModal(show) {
+            document.getElementById('modal-notes').classList.toggle('hidden', !show);
+        }
+
+        function toggleCoachTipModal(show, message = '') {
+            if (message) {
+                document.getElementById('coach-tip-message').innerText = message;
+            }
+            document.getElementById('modal-coach-tip').classList.toggle('hidden', !show);
+        }
+
+        // Render Qualification Quiz
+        function renderQuizQuestions() {
+            const container = document.getElementById('quiz-questions-list');
+            container.innerHTML = quizQuestions.map((q, qIndex) => `
+                <div class="space-y-2 bg-slate-900/60 p-3.5 rounded-xl border border-slate-800">
+                    <p class="font-bold text-slate-200">${q.question}</p>
+                    <div class="space-y-1.5 pl-2">
+                        ${q.options.map((opt, oIndex) => `
+                            <label class="flex items-center space-x-2 text-xs text-slate-300 hover:text-amber-300 cursor-pointer">
+                                <input type="radio" name="quiz-${q.id}" value="${oIndex}" onchange="checkQuizProgress()" ${appState.quizAnswers[q.id] === oIndex ? 'checked' : ''} class="text-amber-500 focus:ring-amber-500">
+                                <span>${opt}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkQuizProgress() {
+            let score = 0;
+            quizQuestions.forEach(q => {
+                const selected = document.querySelector(`input[name="quiz-${q.id}"]:checked`);
+                if (selected) {
+                    const val = parseInt(selected.value);
+                    appState.quizAnswers[q.id] = val;
+                    if (val === q.correct) score++;
+                }
+            });
+
+            document.getElementById('quiz-score-badge').innerText = `Score: ${score} / 3`;
+            appState.quizPassed = (score === 3);
+        }
+
+        // Render Phase 3 Clause Deck
+        function renderPhase3Clauses() {
+            const container = document.getElementById('clause-cards-container');
+            container.innerHTML = '';
+
+            let remainingCount = 0;
+
+            clauseDeck.forEach(clause => {
+                const isAssigned = appState.assignedClauses[clause.id] !== undefined;
+                if (!isAssigned) remainingCount++;
+
+                const card = document.createElement('div');
+                card.className = `p-3 rounded-xl border text-xs transition cursor-pointer flex items-start space-x-2 ${
+                    isAssigned 
+                        ? 'opacity-30 bg-slate-900 border-slate-800 pointer-events-none' 
+                        : appState.selectedClauseId === clause.id 
+                            ? 'bg-amber-500/20 border-amber-500 text-amber-200 ring-2 ring-amber-500/50' 
+                            : 'bg-slate-900/80 border-slate-700/80 hover:border-amber-500/50 text-slate-200'
+                }`;
+                card.onclick = () => selectClause(clause.id);
+
+                card.innerHTML = `
+                    <i class="fa-solid ${appState.selectedClauseId === clause.id ? 'fa-circle-dot text-amber-400' : 'fa-circle text-slate-600'} mt-0.5"></i>
+                    <span class="flex-grow">${clause.text}</span>
+                `;
+                container.appendChild(card);
+            });
+
+            document.getElementById('clauses-left-count').innerText = `${remainingCount} Clauses Left`;
+        }
+
+        function selectClause(id) {
+            appState.selectedClauseId = id;
+            renderPhase3Clauses();
+            
+            const clause = clauseDeck.find(c => c.id === id);
+            if (clause) {
+                document.getElementById('floating-instruction-text').innerText = 
+                    `Selected Clause: "${clause.text.substring(0, 60)}..." -> Now, click a Category Slot on the right matrix!`;
+            }
+        }
+
+        function assignSelectedClauseToCategory(categoryKey) {
+            if (!appState.selectedClauseId) {
+                toggleCoachTipModal(true, "Please select a Project Clause from the left deck first before clicking a category slot!");
+                return;
+            }
+
+            const clause = clauseDeck.find(c => c.id === appState.selectedClauseId);
+            if (!clause) return;
+
+            appState.phase3Steps++;
+
+            // Check correctness / Logic traps
+            if (clause.correctCategory === categoryKey) {
+                // Correct match!
+                appState.assignedClauses[clause.id] = categoryKey;
+                appState.selectedClauseId = null;
+                
+                // Update Slot UI
+                const slotEl = document.getElementById(`slot-${categoryKey}`);
+                slotEl.className = "min-h-[48px] bg-slate-900/90 rounded-lg p-2.5 text-slate-100 text-xs border border-emerald-500/50 flex items-start space-x-2";
+                slotEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i><span>${clause.text}</span>`;
+
+                document.getElementById('floating-instruction-text').innerText = 
+                    `Great job! Accurate alignment. Select the next clause to continue.`;
+
+            } else {
+                // Wrong or Trap match!
+                appState.phase3Errors++;
+                
+                if (clause.correctCategory.startsWith('TRAP_')) {
+                    toggleCoachTipModal(true, `${clause.explanation}`);
+                } else {
+                    toggleCoachTipModal(true, `Incorrect Alignment! This clause does not belong under ${categoryKey.toUpperCase()}. Review the Reference Notes if needed.`);
+                }
+            }
+
+            // Update Metrics Display
+            updatePhase3Metrics();
+            renderPhase3Clauses();
+        }
+
+        function updatePhase3Metrics() {
+            document.getElementById('metric-steps').innerText = appState.phase3Steps;
+            document.getElementById('metric-errors').innerText = appState.phase3Errors;
+            
+            const correctCount = Object.keys(appState.assignedClauses).length;
+            document.getElementById('metric-accuracy').innerText = `${correctCount}/6`;
+        }
+
+        function saveCurrentPhaseInputs() {
+            // Save Phase 1
+            const p1Name = document.getElementById('input-student-name').value.trim();
+            const p1Id = document.getElementById('input-student-id').value.trim();
+            if (p1Name) appState.studentName = p1Name;
+            if (p1Id) appState.studentId = p1Id;
+
+            // Save Phase 4 Justifications
+            const j1 = document.getElementById('input-justification-1').value.trim();
+            const j2 = document.getElementById('input-justification-2').value.trim();
+            const j3 = document.getElementById('input-justification-3').value.trim();
+            if (j1) appState.justification1 = j1;
+            if (j2) appState.justification2 = j2;
+            if (j3) appState.justification3 = j3;
+
+            // Save Phase 5 Reflections
+            const r1 = document.getElementById('input-reflection-1').value.trim();
+            const r2 = document.getElementById('input-reflection-2').value.trim();
+            if (r1) appState.reflection1 = r1;
+            if (r2) appState.reflection2 = r2;
+
+            // Save Phase 7 CTA
+            const ctaChecked = document.querySelector('input[name="cta-choice"]:checked');
+            if (ctaChecked) appState.ctaChoice = ctaChecked.value;
+        }
+
+        function restorePhaseInputs() {
+            document.getElementById('input-student-name').value = appState.studentName;
+            document.getElementById('input-student-id').value = appState.studentId;
+            document.getElementById('input-justification-1').value = appState.justification1;
+            document.getElementById('input-justification-2').value = appState.justification2;
+            document.getElementById('input-justification-3').value = appState.justification3;
+            document.getElementById('input-reflection-1').value = appState.reflection1;
+            document.getElementById('input-reflection-2').value = appState.reflection2;
+        }
+
+        function navigatePhase(direction) {
+            saveCurrentPhaseInputs();
+
+            const targetPhase = appState.currentPhase + direction;
+
+            // Validation rules when moving FORWARD
+            if (direction > 0) {
+                if (appState.currentPhase === 1) {
+                    if (!appState.studentName || !appState.studentId) {
+                        alert("Please enter your Student Name and ID before proceeding!");
+                        return;
+                    }
+                }
+
+                if (appState.currentPhase === 2) {
+                    if (!appState.quizPassed) {
+                        alert("You must answer all 3 Qualification Quiz questions correctly (3/3) to enter the simulation!");
+                        return;
+                    }
+                }
+
+                if (appState.currentPhase === 3) {
+                    const assignedCount = Object.keys(appState.assignedClauses).length;
+                    if (assignedCount < 6) {
+                        alert("Please assign all 6 Project Scope Categories in the alignment matrix before proceeding!");
+                        return;
+                    }
+                }
+
+                if (appState.currentPhase === 4) {
+                    if (!appState.justification1 || !appState.justification2 || !appState.justification3) {
+                        alert("Please fill in all 3 Justification Questions before continuing!");
+                        return;
+                    }
+                }
+
+                if (appState.currentPhase === 5) {
+                    if (!appState.reflection1 || !appState.reflection2) {
+                        alert("Please complete both Reflection Questions before proceeding!");
+                        return;
+                    }
+                }
+            }
+
+            if (targetPhase >= 1 && targetPhase <= 8) {
+                // Hide current container
+                document.getElementById(`phase-${appState.currentPhase}`).classList.add('hidden');
+                appState.currentPhase = targetPhase;
+                
+                // Show target container
+                document.getElementById(`phase-${appState.currentPhase}`).classList.remove('hidden');
+
+                // Special triggers on phase entry
+                if (appState.currentPhase === 4) populatePhase4Metrics();
+                if (appState.currentPhase === 7) populatePortfolioReport();
+                if (appState.currentPhase === 8) populateCertificate();
+
+                restorePhaseInputs();
+                renderPhaseStepper();
+                updateNavigationState();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateNavigationState() {
+            document.getElementById('btn-prev').disabled = (appState.currentPhase === 1);
+            
+            const nextBtn = document.getElementById('btn-next');
+            if (appState.currentPhase === 8) {
+                nextBtn.classList.add('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+            }
+
+            document.getElementById('footer-phase-title').innerText = `Phase ${appState.currentPhase} of 8`;
+        }
+
+        function populatePhase4Metrics() {
+            const now = new Date();
+            const diffSec = Math.floor((now - appState.startTime) / 1000);
+            const mins = String(Math.floor(diffSec / 60)).padStart(2, '0');
+            const secs = String(diffSec % 60).padStart(2, '0');
+
+            document.getElementById('p4-time-taken').innerText = `${mins}:${secs}`;
+            document.getElementById('p4-total-errors').innerText = appState.phase3Errors;
+            
+            const acc = Math.max(0, 100 - (appState.phase3Errors * 15));
+            document.getElementById('p4-accuracy-score').innerText = `${acc}%`;
+        }
+
+        function populatePortfolioReport() {
+            document.getElementById('report-student-name').innerText = appState.studentName || '-';
+            document.getElementById('report-student-id').innerText = appState.studentId || '-';
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('report-date').innerText = today;
+
+            const acc = Math.max(0, 100 - (appState.phase3Errors * 15));
+            document.getElementById('report-accuracy').innerText = `${acc}%`;
+
+            // Populate Scope Breakdown Cards
+            const breakdownContainer = document.getElementById('report-scope-breakdown');
+            breakdownContainer.innerHTML = '';
+
+            const categoryLabels = {
+                objective: '1. Objective',
+                deliverables: '2. Deliverables',
+                milestones: '3. Milestones',
+                technical: '4. Technical Requirements',
+                exclusions: '5. Limits & Exclusions',
+                reviews: '6. Customer Reviews'
+            };
+
+            Object.keys(appState.assignedClauses).forEach(clauseId => {
+                const cat = appState.assignedClauses[clauseId];
+                const clause = clauseDeck.find(c => c.id === clauseId);
+                if (clause) {
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-900 p-2.5 rounded-lg border border-slate-800";
+                    card.innerHTML = `<strong class="text-amber-400 block text-[11px]">${categoryLabels[cat] || cat}:</strong><span class="text-slate-300 text-xs">${clause.text}</span>`;
+                    breakdownContainer.appendChild(card);
+                }
+            });
+
+            // Justifications & Reflections
+            document.getElementById('report-j1').innerText = appState.justification1 || '-';
+            document.getElementById('report-j2').innerText = appState.justification2 || '-';
+            document.getElementById('report-j3').innerText = appState.justification3 || '-';
+            
+            document.getElementById('report-r1').innerText = appState.reflection1 || '-';
+            document.getElementById('report-r2').innerText = appState.reflection2 || '-';
+        }
+
+        function populateCertificate() {
+            document.getElementById('cert-student-name').innerText = appState.studentName || 'EduSim Student';
+            
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('cert-date').innerText = today;
+
+            const randomId = 'ROYAL-' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('cert-id').innerText = randomId;
+        }
+    </script>
+</body>
+</html>
